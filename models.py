@@ -1,14 +1,11 @@
 from app import db
 
-from flask_login import UserMixin
-
-
-class User(db.Model, UserMixin):
-    id = ...
-    username = ...
-    email = ...
-    pasword_hash = ...
-    is_active = ...
+class City(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nom = db.Column(db.String(100), nullable = False, unique= True)
+    lat = db.Column(db.Float, nullable = False)
+    lon = db.Column(db.Float, nullable = False)
 
     def __str__(self):
-        return self.username
+        return self.nom
+    
