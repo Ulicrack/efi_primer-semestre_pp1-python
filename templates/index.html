@@ -7,7 +7,6 @@
     {% if current_user.is_authenticated %}
         <h1 class="display-4">¡Bienvenido, {{ current_user.username }}!</h1>
         <p class="lead">Has iniciado sesión correctamente en la Aplicación del Clima.</p>
-        <a href="{{ url_for('city') }}" class="btn btn-primary btn-lg mt-3">Ver Ciudades</a>
     {% else %}
         <h1 class="display-4">Bienvenido a la Aplicación del Clima</h1>
         <p class="lead">Por favor inicia sesión o regístrate para acceder a todas las funcionalidades.</p>
@@ -17,4 +16,12 @@
         </div>
     {% endif %}
 </div>
+<h1>Publicaciones</h1>
+{% for post in posts %}
+    <div>
+        <h2><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h2>
+        <p>{{ post.content[:150] }}...</p>
+        <p>Por {{ post.author.username }} - {{ post.created_at.strftime('%d/%m/%Y') }}</p>
+    </div>
+{% endfor %}
 {% endblock %}

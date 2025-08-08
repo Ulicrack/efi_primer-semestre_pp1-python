@@ -1,61 +1,34 @@
-Práctico I
-Práctica Profesionalizante I - Python
+Enunciado:
+Crea un proyecto en Flask que simule un miniblog, donde los usuarios puedan compartir
+sus posteos.
+Deberás implementar las siguientes funcionalidades:
 
-Descripción de la actividad:
-En esta actividad vas a crear una aplicación web utilizando Flask que permita al usuario seleccionar una ciudad y ver el clima actual, consultando una API externa.
+Modelos:
+a) Usuario: Representa a los usuarios registrados en el miniblog. Debe tener campos
+como nombre de usuario, correo electrónico y contraseña.
+b) Entrada o Post: Representa una publicación realizada por un usuario. Debe contener
+campos como título, contenido, fecha de creación y el autor (relacionado con el modelo
+Usuario).
+c) Comentario: Representa los comentarios realizados en una entrada. Debe tener
+campos como el texto del comentario, fecha de creación y el autor (relacionado con el modelo
+Usuario).
+d) Categoría: Representa las etiquetas asociadas a las entradas. Debe tener un campo
+para el nombre de la etiqueta.
 
-Objetivo:
-Practicar rutas con Flask.
-Renderizar templates con herencia.
-Usar parámetros GET para recibir datos desde la URL.
-Consumir la API de Open-Meteo para mostrar clima actual.
+Migraciones:
+Asegúrate de generar las migraciones necesarias para crear las tablas correspondientes en
+la base de datos.
 
-Estructura esperada del proyecto
+Vistas y templates:
+Implementa los templates necesarios para que los usuarios puedan ver, crear posteos
+y comentarios (Editar y Eliminar es un plus).
 
-mi_app_clima/
-├── app.py
-├── requirements.txt
-└── templates/
-    ├── layout.html
-    ├── index.html
-    └── clima.html
+Context processor:
+Utiliza un context_processor para proporcionar la lista de categorías disponibles en
 
-Requisitos técnicos:
-
-Ruta /:
-Muestra una lista de ciudades disponibles como enlaces.
-Cada enlace lleva a /clima?ciudad=Nombre, donde Nombre es una ciudad predefinida.
-
-Ruta /clima:
-Toma el nombre de la ciudad desde la URL con request.args.get("ciudad").
-Busca latitud y longitud en un diccionario de Python.
-Realiza una petición a la API de Open-Meteo para obtener el clima actual.
-Muestra los datos en clima.html.
-
-API usada:
-https://api.open-meteo.com/v1/forecast?latitude=-31.42&longitude=-64.18&current_weather=true
-
-
-
-Diccionario de Ciudades:
-
-ciudades = {
-    "Buenos Aires": {"lat": -34.6037, "lon": -58.3816},
-    "Córdoba": {"lat": -31.4201, "lon": -64.1888},
-    "Madrid": {"lat": 40.4168, "lon": -3.7038},
-    "Nueva York": {"lat": 40.7128, "lon": -74.0060},
-    "Tokio": {"lat": 35.6895, "lon": 139.6917},
-    "París": {"lat": 48.8566, "lon": 2.3522},
-    "Londres": {"lat": 51.5074, "lon": -0.1278},
-    "Sídney": {"lat": -33.8688, "lon": 151.2093},
-    "Ciudad de México": {"lat": 19.4326, "lon": -99.1332},
-    "El Cairo": {"lat": 30.0444, "lon": 31.2357}
-}
-
-
-Entrega:
-
-Fecha límite: Viernes 9 de mayo 24hs.
-Enviar en repo GitHub con todos los archivos necesarios.
-
-
+Consideraciones:
+- Se entrega un repositorio de Github
+- Maximo por grupo 3 personas
+- Cada uno debe entregar el repositorio en el que trabajo en classroom ya que alli figura la entrega o no de la EFI
+- La base de datos debe estár en MySQL
+- Fecha de entrega 12/8

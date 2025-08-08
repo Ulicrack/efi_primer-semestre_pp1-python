@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block head_title %}Mi Perfil{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Mi Perfil</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ current_user.username }}</h5>
+        <p class="card-text"><strong>Email:</strong> {{ current_user.email }}</p>
+    </div>
+</div>
+
+<h4>Mis Publicaciones</h4>
+{% if current_user.posts %}
+    <ul class="list-group mb-4">
+        {% for post in current_user.posts %}
+            <li class="list-group-item">
+                <a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a>
+                <small class="text-muted"> - {{ post.created_at.strftime('%d/%m/%Y %H:%M') }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="text-muted">Aún no has creado publicaciones.</p>
+{% endif %}
+
+<h4>Mis Comentarios</h4>
+{% if current_user.comments %}
+    <ul class="list-group mb-4">
+        {% for comment in current_user.comments %}
+            <li class="list-group-item">
+                <small>
+                    En 
+                    <a href="{{ url_for('post_detail', post_id=comment.post.id) }}">
+                        {{ comment.post.title }}
+                    </a>:
+                    {{ comment.content[:100] }}{% if comment.content|length > 100 %}...{% endif %}
+                </small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="text-muted">Aún no has comentado ninguna publicación.</p>
+{% endif %}
+{% endblock %}

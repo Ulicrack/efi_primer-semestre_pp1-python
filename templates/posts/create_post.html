@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block head_title %}Crear Publicación{% endblock %}
+
+{% block content %}
+<h2>Crear nueva publicación</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control", placeholder="Título de la publicación") }}
+        {% for error in form.title.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        {{ form.content.label(class="form-label") }}
+        {{ form.content(class="form-control", rows="6", placeholder="Contenido...") }}
+        {% for error in form.content.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        {{ form.category.label(class="form-label") }}
+        {{ form.category(class="form-control") }}
+        {% for error in form.category.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Publicar</button>
+    <a href="{{ url_for('foro') }}" class="btn btn-secondary mt-2">Cancelar</a>
+</form>
+{% endblock %}
